@@ -57,8 +57,8 @@ class valueView extends JFrame{
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 20)); // ตั้งค่าการจัดเรียง
         
 
-        JLabel label_A = new JLabel("X2 + ");
-        JLabel label_B = new JLabel(" X + ");
+        JLabel label_A = new JLabel("x² + ");
+        JLabel label_B = new JLabel(" x + ");
         JLabel label_C = new JLabel(" ");
 
         panel.add(value_A_Field);
@@ -152,7 +152,7 @@ class valueController {
     }
 
     // method แสดงข้อความ
-    private void showfactorize(int a, int b, int c, double[] value) {
+    private void showfactorize(double a, double b, double c, double[] value) {
         if (value == null) {
             String nullMessage = String.format("Can not factorize %dx² + %dx + %d", a, b, c);
             JOptionPane.showMessageDialog(view, nullMessage);
