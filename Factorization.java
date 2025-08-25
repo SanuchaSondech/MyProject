@@ -9,6 +9,7 @@ class valueModel {
     private int value_B;
     private int value_C;
 
+    // Setter methods
     public void setValue_A(int value_A) {
         this.value_A = value_A;
     }
@@ -19,6 +20,7 @@ class valueModel {
         this.value_C = value_C;
     }
 
+    // Getter methods
     public int getValue_A() {
         return value_A;
     }
@@ -45,7 +47,7 @@ class valueView extends JFrame {
 
         setTitle("Value Factorization");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout(10, 10));
+        setLayout(new BorderLayout(10, 10)); // เพิ่มระยะห่างระหว่างส่วนต่างๆ
 
         // แถวกรอกค่า
         JPanel panel = new JPanel();
@@ -120,7 +122,7 @@ class valueController {
             showfactorize(model.getValue_A(), model.getValue_B(), model.getValue_C(), factors);
 
         } catch (NumberFormatException ex) {
-            view.setResult("Please enter valid numbers.");
+            view.setResult("Please enter numbers.");
         }
     }
 
