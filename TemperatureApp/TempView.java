@@ -1,4 +1,4 @@
-package MyProject.TemperatureApp;
+package TemperatureApp;
 
 import javax.swing.*;
 import java.awt.*;
@@ -117,4 +117,5 @@ public class TempView extends JFrame {
         convertButton.setVisible(false);
         clearButton.setVisible(true);
     }
+
 }
