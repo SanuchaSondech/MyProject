@@ -1,4 +1,4 @@
-package MyProject.TemperatureApp;
+package TemperatureApp;
 
 public class TempModel {
 
@@ -53,5 +53,6 @@ public class TempModel {
     public double kelvinToFahrenheit(double kelvin) {
         return (kelvin - 273.15) * 9/5 + 32;
     }
+
 
 }
