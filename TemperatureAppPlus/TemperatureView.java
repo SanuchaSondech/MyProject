@@ -1,4 +1,4 @@
-package MyProject.TemperatureAppPlus;
+package TemperatureAppPlus;
 
 import javax.swing.*;
 import java.awt.*;
@@ -164,3 +164,4 @@ public class TemperatureView extends JFrame {
     }
     
 }
+
