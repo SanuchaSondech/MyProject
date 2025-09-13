@@ -1,4 +1,4 @@
-package MyProject.TemperatureApp;
+package TemperatureApp;
 
 import javax.swing.*;
 
@@ -10,4 +10,5 @@ public class Main {
             TempTempController controller = new TempTempController(view, model);
         });
     }
+
 }
