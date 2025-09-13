@@ -1,5 +1,3 @@
-package MyProject;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -164,3 +162,4 @@ public class Factorization {
         valueController controller = new valueController(model, view);
     }
 }
+
