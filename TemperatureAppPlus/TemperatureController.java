@@ -1,4 +1,4 @@
-package MyProject.TemperatureAppPlus;
+package TemperatureAppPlus;
 
 public class TemperatureController {
 
@@ -75,5 +75,6 @@ public class TemperatureController {
 
         view.showConvertButton();
     }
+
 
 }
