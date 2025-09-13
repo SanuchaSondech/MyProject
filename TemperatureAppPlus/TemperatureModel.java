@@ -1,4 +1,4 @@
-package MyProject.TemperatureAppPlus;
+package TemperatureAppPlus;
 
 import java.util.*;
 
@@ -68,4 +68,5 @@ public class TemperatureModel {
     public List<double[]> getHistory() {
         return history;
     }
+
 }
