@@ -1,5 +1,23 @@
-These three projects show my journey in learning programming.
-I started with FactorizationApp, then TemperatureApp, and finally TemperatureAppPlus.
-Each project helped me improve my skills in Object-Oriented Programming (OOP),
-MVC design, and building UI with Java Swing,
-making my programs more complex and complete over time.
+# MyProject
+
+โปรเจคเหล่านี้เป็นโปรเจคที่ฉันพัฒนาขึ้นเพื่อศึกษากระบวนการและแนวคิดของภาษาต่าง ๆ  
+เรียนรู้หลักการเขียนโปรแกรม และนำความรู้ที่ได้ไปใช้ในงานจริง
+
+## โปรเจคที่ฉันพัฒนาเสร็จแล้ว
+
+- **Factorization**  
+  เป็นมินิโปรเจคที่ฉันพัฒนากับทีมในวิชา OOP  
+  โปรแกรมนี้ใช้สำหรับแยกตัวประกอบของจำนวนเต็ม และฝึกการออกแบบโปรแกรมแบบ OOP โดยใช้คลาสและเมธอดอย่างเหมาะสม  
+
+- **TemperatureApp**  
+  โปรแกรมแปลงหน่วยอุณหภูมิ (Celsius, Fahrenheit, Kelvin)  
+  ฝึกการสร้าง GUI ด้วย Java Swing และการจัดการค่า input/output ของผู้ใช้  
+
+- **TemperatureAppPlus**  
+  เป็นเวอร์ชันปรับปรุงของ TemperatureApp เพิ่มฟีเจอร์เก็บประวัติการแปลงอุณหภูมิในตาราง  
+  แสดงความสามารถในการจัดการข้อมูลแบบเรียลไทม์ และการอัปเดต GUI ตาม MVC Pattern  
+
+- **ScoreAnalyzer**  
+  โปรแกรม Python สำหรับบันทึกและวิเคราะห์คะแนนนักเรียน  
+  อ่าน/เขียนไฟล์ CSV, คำนวณคะแนนรวม, ตรวจสอบผ่าน/ไม่ผ่าน, และคำนวณค่าเฉลี่ยของแต่ละวิชา  
+  แสดงตัวอย่างการประมวลผลข้อมูล (Data Handling) และการใช้ฟังก์ชันใน Python
