@@ -1,0 +1,65 @@
+body {
+    background-color: #080c23;
+    color: white;
+    font-family: "Sarabun", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* รูปอยู่ตรงกลาง ขนาดคงที่ */
+.Cover-pic {
+    display: block;
+    margin: 30px auto;
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.novel {
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.novel h1 {
+    font-size: 40px;
+    margin: 20px 0;
+}
+
+.story {
+    text-align: left;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.story p {
+    margin: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 1.5rem 0;
+}
+
+.navbar a {
+    padding: 0.6rem 1rem;
+    border-radius: 0.4rem;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-prev {
+    background: #0b2a5a;
+}
+
+.nav-home {
+    background: #2a5a0b;
+}
+
+.nav-next {
+    background: #5a0b2a;
+}
