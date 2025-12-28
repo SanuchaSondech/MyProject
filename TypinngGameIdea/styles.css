@@ -1,0 +1,185 @@
+/*ตั้งค่าตัวแปล*/
+:root {
+    --floor-height: 120px;
+}
+
+body{
+    background: #091039;
+}
+
+/*หน้าจอเกม*/
+#panal {
+    max-width: 1000px;
+    /* ขนาดสนามเกม */
+    width: 100%;
+    height: 500px;
+    margin: 10px auto;
+    border-top: 1px solid transparent;
+    position: relative;
+    /* รูปพื้นหลัง */
+    background-image: url('img/background.png'); 
+    background-size: cover; /* ทำให้รูปเต็มกรอบ */
+    background-position: center;  /* อยู่ตรงกลาง */
+    background-repeat: no-repeat;
+}
+
+/*หลอดความคืบหน้า*/
+.progress {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: calc(100% - 40px);
+    height: 20px;
+    background-color: #ffcbcb;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+#progress-bar {
+    width: 50%;
+    /* Js ควบคุม */
+    height: 100%;
+    background-color: #df1a1a;
+    transition: width 0.3s ease;
+}
+
+/*ตัวละคร*/
+#character {
+    position: absolute;
+    bottom: var(--floor-height);
+    left: 50px;
+    height: 150px;
+    width: 132px;
+   
+}
+
+#character img {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+/* ซอมบี้ */
+.zombie {
+    position: absolute;
+    bottom: var(--floor-height);
+    left: 900px;
+    height: 130px;
+    width: auto;
+}
+
+.zombie img {
+    height: 100%;
+    width: auto;
+    display: block;
+}
+
+/*พื้น*/
+#floor {
+    position: absolute;
+    bottom: 0;
+    height: var(--floor-height);
+    width: 100%;
+    /*รูปพื้นหลัง*/
+    background-image: url('img/backgroundFloor.png');  /* ใส่ path รูปพื้น */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* ตัวอักษรที่กำลังพิมพ์ */
+#typingText {
+    position: absolute;
+    display: inline-flex;
+    font-size: 25px;
+
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    
+    height: 40px;
+    padding: 0px 5px 0px 5px; /* top right bottom left */
+
+    left: 70px;
+    bottom: calc(var(--floor-height) + 165px);
+
+    background-color: rgba(255, 255, 255, 0.6);
+    white-space: nowrap;  
+    
+}
+
+/* ข้อความเป้าหมาย */
+#targetText {
+    font-size: 20px;
+    text-align: center;
+    width: 90%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.4);
+  
+}
+
+/* ตัว container ของข้อความทั้งหมด */
+#targetText {
+    display: flex;                   
+    flex-wrap: wrap;        
+}
+
+/* แต่ละข้อความ */
+.target-Text {
+    display: inline-flex;   
+    padding: 2px 5px 0px 5px; /* top right bottom left */    
+    margin: 5px;
+    margin-bottom: 0px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;     
+    height: 40px;
+    white-space: pre;
+}
+
+/*พิมพ์ถูก*/
+.correct{
+    text-decoration: underline;
+    color: green;
+}
+
+/*พิมพ์ผิด*/
+.wrong{
+    text-decoration: underline;
+    color: red;
+}
+
+/* ปุ่มเริ่มเกม */
+button.btn-custom {
+    background-color: #5a3ca1;
+    color: white; 
+    border: none;
+}
+
+button.btn-custom:hover {
+    background-color: #392567;
+    color: white;  
+}
+
+/* คะแนน */
+#scoreBoard {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.7);
+    width: 400px;
+    height: 300px;
+    top: 47%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+   
+}
+
+/* ซ่อน */
+.hidden {
+    display: none;
+}
+
+/* แสดง */
+.show-center {
+    display: flex;
+    flex-direction: column;
+
+}

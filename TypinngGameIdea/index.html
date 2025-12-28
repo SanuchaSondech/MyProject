@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Game</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!--ส่วนหน้าจอ-->
+    <section id="panal">
+
+        <!-- progress bar -->
+        <div class="progress">
+            <div id="progress-bar"></div>
+        </div>
+
+        <!-- คะแนน -->
+        <div id="scoreBoard" class="hidden justify-content-start container rounded shadow z-3">
+
+            <div id="textScore" class="row text-center my-4">
+                <div id="scoreLabel" class="col-12">
+                    <p class="h1 fw-bold">Your Score</p>
+                </div>
+            </div>
+
+            <div class="row text-center mb-3">
+                <div class="col-6">
+                    <p class="h2">Correct</p>
+                </div>
+                <div class="col-6">
+                    <p id="scoreCorrect" class="h2">0</p>
+                </div>
+            </div>
+
+            <div class="row text-center mb-2">
+                <div class="col-6">
+                    <p class="h2">Wrong</p>
+                </div>
+                <div class="col-6">
+                    <p id="scoreWrong" class="h2">0</p>
+                </div>
+            </div>
+
+            <div class="row text-center mt-4 text-decoration-underline ">
+                <div class="col-12">
+                    <p id="result" class="h1">You Pass</p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--ตัวอักษรที่กำลังพิมพ์-->
+        <div id="typingText" class="rounded">
+            <p>A</p>
+        </div>
+
+        <!-- ตัวละคร -->
+        <div id="character">
+            <img src="img/characterBobby/characterBobby1.png">
+        </div>
+
+        <!-- ศัตรู -->
+        <div class="enemy">
+            <!-- ซอมบี้ -->
+            <div class="zombie">
+                <img src="img\zombie\zombie1.png">
+            </div>
+            <!--อื่น ๆ ในอนาคต-->
+        </div>
+
+        <!-- พื้น -->
+        <div id="floor" class="d-flex justify-content-center align-items-center">
+            <!--ข้อความเป้าหมาย-->
+            <div id="targetText" class="rounded">
+                    <!--สร้างจาก Js-->
+            </div>
+        </div>
+    </section>
+
+    <!-- ควบคุมเกม -->
+    <section id="gameControls" class="container text-center my-3">
+        <div class="row justify-content-center">
+            <div class="col-12 d-flex justify-content-center gap-3">
+                <button onclick="gameBack()" class="btn btn-lg btn-custom">
+                    Back
+                </button>
+                <button onclick="gameStart()" class="btn btn-lg btn-custom">
+                    Start Game
+                </button>
+                <button onclick="gameNext()" class="btn btn-lg btn-custom">
+                    Next
+                </button>
+            </div>
+
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 mt-4">
+                <button onclick="gameReset()" class="btn btn-lg btn-custom">
+                    Reset Game
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+    <script src="index.js" defer></script>
+</body>
+
+</html>
