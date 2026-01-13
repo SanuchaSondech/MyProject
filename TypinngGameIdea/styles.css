@@ -1,9 +1,10 @@
 /*ตั้งค่าตัวแปล*/
 :root {
     --floor-height: 120px;
+    --progress-point: 100%;
 }
 
-body{
+body {
     background: #091039;
 }
 
@@ -17,9 +18,11 @@ body{
     border-top: 1px solid transparent;
     position: relative;
     /* รูปพื้นหลัง */
-    background-image: url('img/background.png'); 
-    background-size: cover; /* ทำให้รูปเต็มกรอบ */
-    background-position: center;  /* อยู่ตรงกลาง */
+    background-image: url('img/background.png');
+    background-size: cover;
+    /* ทำให้รูปเต็มกรอบ */
+    background-position: center;
+    /* อยู่ตรงกลาง */
     background-repeat: no-repeat;
 }
 
@@ -36,8 +39,7 @@ body{
 }
 
 #progress-bar {
-    width: 50%;
-    /* Js ควบคุม */
+    width: var(--progress-point); /* Js ควบคุม */
     height: 100%;
     background-color: #df8d1a;
     transition: width 0.3s ease;
@@ -50,7 +52,7 @@ body{
     left: 50px;
     height: 150px;
     width: 132px;
-   
+
 }
 
 #character img {
@@ -81,7 +83,8 @@ body{
     height: var(--floor-height);
     width: 100%;
     /*รูปพื้นหลัง*/
-    background-image: url('img/backgroundFloor.png');  /* ใส่ path รูปพื้น */
+    background-image: url('img/backgroundFloor.png');
+    /* ใส่ path รูปพื้น */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -96,16 +99,17 @@ body{
     text-align: center;
     align-items: center;
     justify-content: center;
-    
+
     height: 40px;
-    padding: 0px 5px 0px 5px; /* top right bottom left */
+    padding: 0px 5px 0px 5px;
+    /* top right bottom left */
 
     left: 70px;
     bottom: calc(var(--floor-height) + 165px);
 
     background-color: rgba(255, 255, 255, 0.6);
-    white-space: nowrap;  
-    
+    white-space: nowrap;
+
 }
 
 /* ข้อความเป้าหมาย */
@@ -116,31 +120,32 @@ body{
     height: 80%;
     background-color: rgba(255, 255, 255, 0.6);
 
-    display: flex;                   
-    flex-wrap: wrap;  
-  
+    display: flex;
+    flex-wrap: wrap;
+
 }
 
 /* แต่ละข้อความ */
 .target-Text {
-    display: inline-flex;   
-    padding: 2px 5px 0px 5px; /* top right bottom left */    
+    display: inline-flex;
+    padding: 2px 5px 0px 5px;
+    /* top right bottom left */
     margin: 5px;
     margin-bottom: 0px;
     background-color: rgba(255, 255, 255, 0.5);
-    border-radius: 5px;     
+    border-radius: 5px;
     height: 40px;
     white-space: pre;
 }
 
 /*พิมพ์ถูก*/
-.correct{
+.correct {
     text-decoration: underline;
     color: green;
 }
 
 /*พิมพ์ผิด*/
-.wrong{
+.wrong {
     text-decoration: underline;
     color: red;
 }
@@ -148,13 +153,13 @@ body{
 /* ปุ่ม */
 button.btn-custom {
     background-color: #4a96c9;
-    color: white; 
+    color: white;
     border: none;
 }
 
 button.btn-custom:hover {
     background-color: #417ba2;
-    color: white;  
+    color: white;
 }
 
 /* ปุ่มเริ่มเกม */
@@ -164,7 +169,7 @@ button.btn-custom:hover {
 
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 
     font-size: 20px;
 }
@@ -176,9 +181,9 @@ button.btn-custom:hover {
 
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 
-    
+
 
     font-size: 20px;
 }
@@ -190,13 +195,13 @@ button.btn-custom:hover {
 
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 
     font-size: 20px;
 }
 
 /* คะแนน */
-#scoreBoard {
+.board {
     position: absolute;
     background-color: rgba(255, 255, 255, 0.7);
     width: 400px;
@@ -204,7 +209,6 @@ button.btn-custom:hover {
     top: 47%;
     left: 50%;
     transform: translate(-50%, -50%);
-   
 }
 
 /* ซ่อน */
@@ -217,4 +221,15 @@ button.btn-custom:hover {
     display: flex;
     flex-direction: column;
 
+}
+
+/* อนิเมชั่น */
+@keyframes pulse {
+    0%   { transform: scale(1); }
+    50%  { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.focus-text {
+    animation: pulse 1s infinite;
 }
