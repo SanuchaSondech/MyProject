@@ -1,3 +1,9 @@
+// คู่มือการเล่น
+alert(`คู่มือการเล่น
+1. พิมพ์คำสั่งตามลำดับ
+2. เมื่อพิมพ์เสร็งให้กด ENTER
+3. กรุณาพิมพ์ให้ตรงตามตัวอย่างรวมถึงช่องว่าง`);
+
 ///_________ส่วนตัวละคร__________///
 const characterEl = document.querySelector("#character");
 let characterX = characterEl.offsetLeft; // ตำแหน่งเริ่มต้นตัวละคร
@@ -62,7 +68,7 @@ function moveZombie() {
     // ตรสจสอบการชน
     if (isGameOver()) {
         gameState = "gameover";
-        alert("คุณแพ้!");
+        gameOver();
         clearInterval(zombieInterval); // หยุดซอมบี้
     } else {
         zombieX = zombieX - zombieStep;
@@ -71,9 +77,9 @@ function moveZombie() {
         //สลับรูป
         currentZombieFrame = currentZombieFrame === 0 ? 1 : 0;
         zombieEl.querySelector("img").src = zombieFrames[currentZombieFrame];
+
+        updateProgress();
     }
-
-
 }
 
 function zombieHitPanelEdge() {
@@ -93,7 +99,6 @@ function isGameOver() {
     return characterRect.right >= zombieRect.left + 80;
 }
 
-
 ///_________ส่วนเกม__________///
 // สถานะเกม
 let gameState = "wait"; // playing | gameover | win
@@ -105,12 +110,13 @@ let level = 0; // ด่าน
 
 //ปุ่มเริ่มเกม
 function gameStart() {
+    document.activeElement.blur(); // เอา focus ออกจากปุ่ม
     if (gameState == "playing") return; // บังคับยกเลิกฟังชั่น
+    if (gameState == "win" || gameState == "gameover") gameReset();
     gameState = "playing";
     zombieInterval = setInterval(moveZombie, interval); // เริ่มซอมบี้เดิน
     showPage(level, page); // แสดงหน้า
-    const spans = targetTextEl.querySelectorAll("span"); // เลือก span ทั้งหมดที่ส้ราง
-    console.log(spans);
+    focusText(); // ขยับอนิเมชั่น
 }
 
 // ปุ่มรีเซ็ตเกม
@@ -131,38 +137,49 @@ function gameReset() {
     scoreCorrect = 0; // รีเซ็ตคะแนนพิมพ์ถูก
     scoreWrong = 0; // รีเซ็ตคะแนนพิมพ์ผิด
 
-    hiddenScoreBoard() // ซ่อนข้อมูลคะแนน
+    hiddenScoreBoard(); // ซ่อนข้อมูลคะแนน
+    hidegameOverBoard(); // ซ่อน game over
+
+    // รีเซ็ต progress bar
+    startProgress = zombieX - characterX - 80;
+    document.documentElement.style.setProperty("--progress-point", 100 + "%");
 }
 
-// เกมชนะ
+// _____เกมชนะ_____ //
 function gameWin() {
     gameState = "win"; // playing | gameover | win
     clearInterval(zombieInterval); // หยุดซอมบี้
     showScoreBoard();
     showGameresult()
+    clearFocusText(); // ลบอนิเมชั่นข้อความ
 }
 
 // แสดงข้อมูลคะแนน
-function showScoreBoard(){
+function showScoreBoard() {
     const scoreBoardEl = document.querySelector("#scoreBoard");
     scoreBoardEl.classList.remove("hidden");
     scoreBoardEl.classList.add("show-center");
-    // แสดงคะแนน
-    const scoreCorrectEl = document.querySelector("#scoreCorrect");
-    scoreCorrectEl.textContent = scoreCorrect;
-    const scoreWrongEl = document.querySelector("#scoreWrong");
-    scoreWrongEl.textContent = scoreWrong;
-    
+    showScore();
+}
+
+// แสดงคะแนน
+function showScore() {
+    const scoreCorrectEl = document.querySelectorAll(".scoreCorrect");
+    scoreCorrectEl.forEach(el => el.textContent = scoreCorrect);
+    const scoreWrongEl = document.querySelectorAll(".scoreWrong");
+    scoreWrongEl.forEach(el => el.textContent = scoreWrong);
+    const scorePendingEl = document.querySelectorAll(".scorePending");
+    scorePendingEl.forEach(el => el.textContent = (countLengthLevel(level)) - (scoreCorrect + scoreWrong));
 }
 
 // ซ่อนข้อมูลคะแนน
-function hiddenScoreBoard(){
+function hiddenScoreBoard() {
     const scoreBoardEl = document.querySelector("#scoreBoard");
     scoreBoardEl.classList.add("hidden");
     scoreBoardEl.classList.remove("show-center");
 }
 
-function showGameresult(){
+function showGameresult() {
 
     const resultEl = document.querySelector("#result");
     let sumScore = scoreCorrect + scoreWrong;
@@ -171,9 +188,50 @@ function showGameresult(){
         // ผ่าน
         resultEl.textContent = "You Passed!";
     } else {
-       // ไม่ผ่าน
+        // ไม่ผ่าน
         resultEl.textContent = "You Failed!";
     }
+}
+
+// _____เกมแพ้_____ //
+function gameOver() {
+    gameState = "gameover";
+    clearInterval(zombieInterval); // หยุดซอมบี้
+    showgameOverBoard();
+    clearFocusText(); // ลบอนิเมชั่นข้อความ
+}
+
+// แสดง game over
+function showgameOverBoard() {
+    const gameOverBoardEl = document.querySelector("#gameOverBoard");
+    gameOverBoardEl.classList.remove("hidden");
+    gameOverBoardEl.classList.add("show-center");
+    showScore();
+}
+
+// ซ่อน game over
+function hidegameOverBoard() {
+    const gameOverBoardEl = document.querySelector("#gameOverBoard");
+    gameOverBoardEl.classList.add("hidden");
+    gameOverBoardEl.classList.remove("show-center");
+}
+
+//_____หลอดสถานะ_____
+let startProgress = zombieX - characterX - 80;
+
+function updateProgress() {
+
+    let progress = (((zombieX - characterX) - 80) / startProgress) * 100;
+
+    progress = Math.max(0, Math.min(100, progress));
+
+    document.documentElement.style.setProperty("--progress-point", progress + "%");
+
+}
+
+//_____ส่วนเมนู_____
+function menu() {
+    alert("อยู่ในกระบวนการพัฒนา");
 }
 
 //__________ส่วนข้อความ__________//
@@ -214,6 +272,18 @@ const textContentLv1 = [textContentLv1P1, textContentLv1P2];
 // ทุกด่าน
 const allTextContent = [textContentLv1];
 
+// นับความยาวคำในด่าน
+function countLengthLevel(level) {
+    let lengthLevel = 0;
+
+    for (let page of allTextContent[level]) { // วนทีละหน้า
+        lengthLevel = lengthLevel + page.length;
+    }
+
+    return lengthLevel;
+}
+
+
 // ช่องข้อความ
 const targetTextEl = document.querySelector("#targetText");
 
@@ -222,13 +292,34 @@ function showText(Element, level, page, targetTextIndex) {
     Element.textContent = allTextContent[level][page][targetTextIndex];
 }
 
+// ขยับอนิเมชั่นข้อความ
+function focusText() {
+    if (gameState !== "playing") return;
+    const targetTextDivs = targetTextEl.querySelectorAll(".text");
+    if (targetTextIndex > 0) {
+        targetTextDivs[targetTextIndex - 1].classList.remove("focus-text");
+    }
+    if (targetTextIndex < targetTextDivs.length) {
+        targetTextDivs[targetTextIndex].classList.add("focus-text");
+    }
+}
+
+// ลบอนิเมชั่นข้อความ
+function clearFocusText() {
+    const focused = targetTextEl.querySelector(".focus-text");
+    if (focused) {
+        focused.classList.remove("focus-text");
+    }
+}
+
+
 // แสดงหน้าข้อความ
 function showPage(level, page) {
 
     // ไม่มีหน้าต่อไป
     if (page >= allTextContent[level].length) {
+        gameState = "win";
         gameWin();
-        console.log("คุณชนะ");
         return;
     }
 
@@ -258,7 +349,6 @@ function showPage(level, page) {
 function onTypeCorrect(length) {
     scoreCorrect++;
     characterShoot(0);
-
     if (!zombieHitPanelEdge()) {
         zombieX += zombieStep + length * 10; // ขยับซอมบี้ถอยหลัง
         updatePosition(zombieEl, zombieX);
@@ -284,10 +374,9 @@ let wrong = 0; // ตัวนับคำผิด
 
 document.addEventListener("keydown", function (event) {
     if (gameState !== "playing") return; // บังคับยกเลิกฟังชั่น
-    
+
     // เมื่อกด Enter
     if (event.key === "Enter") {
-
         userInputIndex = 0; // รีเซ็ตตัวชี้ตำแหน่งตัวอักษรผู้ใช้
         wrong = 0; // รีเซ็ตตัวนับคำผิด
 
@@ -296,7 +385,7 @@ document.addEventListener("keydown", function (event) {
         let targetTextDiv = targetTextDivs[targetTextIndex]; // คำที่ต้องพิมพ์
 
         const targetSpans = targetTextDiv.querySelectorAll("span"); // ตัวอักษรในคำนั้น
-        
+
         // ตรวจสอบตัวอักษรที่พิมพ์
         for (let targetSpan of targetSpans) {
             if (targetSpan.textContent === userInput[userInputIndex]) {
@@ -314,9 +403,9 @@ document.addEventListener("keydown", function (event) {
         }
 
         // คำถูกต้องหรือไม่
-        if (wrong === 0){
-            onTypeCorrect(userInput.length); 
-        } else{
+        if (wrong === 0) {
+            onTypeCorrect(userInput.length);
+        } else {
             onTypeWrong();
         }
 
@@ -329,14 +418,17 @@ document.addEventListener("keydown", function (event) {
             page++;
             targetTextIndex = 0; // รีเซ็ตตำแหน่งคำที่ต้องพิมพ์
             showPage(level, page);
+
         }
-        
+
+        focusText(); // ขยับอนิเมชั่น
+
     } else if (event.key === "Backspace") {
         // Backspace
         if (userInput.length === 0) return; // ว่างเปล่า
         userInput.pop(); // ลบตัวอักษรตัวสุดท้าย
         typingText.textContent = userInput.join("");
-    }else if (event.key.length === 1){
+    } else if (event.key.length === 1) {
         // พิมพ์ปกติ
         const char = event.key; // ตัวอักษรที่พิมพ์
         userInput.push(char);
