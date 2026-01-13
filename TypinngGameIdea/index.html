@@ -20,7 +20,7 @@
         </div>
 
         <!-- คะแนน -->
-        <div id="scoreBoard" class="hidden justify-content-start container rounded shadow z-3">
+        <div id="scoreBoard" class="hidden board justify-content-start container rounded shadow z-3">
 
             <div id="textScore" class="row text-center my-4">
                 <div id="scoreLabel" class="col-12">
@@ -33,7 +33,7 @@
                     <p class="h2">Correct</p>
                 </div>
                 <div class="col-6">
-                    <p id="scoreCorrect" class="h2">0</p>
+                    <p class="h2 scoreCorrect">0</p>
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                     <p class="h2">Wrong</p>
                 </div>
                 <div class="col-6">
-                    <p id="scoreWrong" class="h2">0</p>
+                    <p class="h2 scoreWrong">0</p>
                 </div>
             </div>
 
@@ -53,7 +53,38 @@
             </div>
         </div>
 
+        <!-- ข้อความแพ้ -->
+        <div id="gameOverBoard" class="hidden board justify-content-start container rounded shadow z-3">
+            <div class="row text-center my-4">
+                <div id="scoreLabel" class="col-12">
+                    <p class="h1 fw-bold">You Dead</p>
+                </div>
+            </div>
 
+            <div class="row text-center">
+                <div class="col-4">
+                    <p class="h2">Correct</p>
+                </div>
+                <div class="col-4">
+                    <p class="h2">Wrong</p>
+                </div>
+                <div class="col-4">
+                    <p class="h2">Pending</p>
+                </div>
+            </div>
+
+            <div class="row text-center mb-3">
+                <div class="col-4">
+                    <p class="h2 scoreCorrect">0</p>
+                </div>
+                <div class="col-4">
+                    <p class="h2 scoreWrong">0</p>
+                </div>
+                <div class="col-4">
+                    <p class="h2 scorePending">0</p>
+                </div>
+            </div>
+        </div>
 
         <!--ตัวอักษรที่กำลังพิมพ์-->
         <div id="typingText" class="rounded">
@@ -78,7 +109,7 @@
         <div id="floor" class="d-flex justify-content-center align-items-center">
             <!--ข้อความเป้าหมาย-->
             <div id="targetText" class="rounded">
-                    <!--สร้างจาก Js-->
+                <!--สร้างจาก Js-->
             </div>
         </div>
     </section>
@@ -87,7 +118,7 @@
     <section id="gameControls" class="container text-center my-3">
         <div class="row justify-content-center">
             <div class="col-12 d-flex justify-content-center gap-3">
-                <button onclick="" class="btn btn-lg btn-custom" id="btm-menu">
+                <button onclick="menu()" class="btn btn-lg btn-custom" id="btm-menu">
                     Menu
                 </button>
                 <button onclick="gameStart()" class="btn btn-lg btn-custom " id="btm-start">
@@ -97,7 +128,6 @@
                     Reset Game
                 </button>
             </div>
-
         </div>
     </section>
 
